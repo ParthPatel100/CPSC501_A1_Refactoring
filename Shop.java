@@ -1,6 +1,8 @@
 public class Shop {
     private double profit;
 
+    private static int DISCOUNT_START_PERIOD = 30;
+
     /**
      * Update profit after selling an item
      * Profit could be a negaative value to indicate a loss
@@ -24,7 +26,7 @@ public class Shop {
      */
     public void sellItems(Item item, int quantityToSell) throws Exception {
         if(item.isAvailableAndValid(quantityToSell)){
-            if(item.getDaysLastBought() >= 30){
+            if(item.getDaysLastBought() >= DISCOUNT_START_PERIOD){
                 item.applyDiscount();
             }
             updateProfit(item, quantityToSell);

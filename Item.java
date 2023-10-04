@@ -6,6 +6,9 @@ public class Item {
     private int quantity;
     private double discountRate;
 
+    private static final int DISCOUNT_PERIOD = 20;
+    private static final int DISCOUNT_RATE_INCREASE = 2;
+
     public Item(String name, double buyingPrice,double sellingPrice,int quantity, int daysLastBought,double discountRate){
         this.name = name;
         this.buyingPrice = buyingPrice;
@@ -50,7 +53,7 @@ public class Item {
      * Others - up by 2% every 20 days.
      */
     public void updateDiscountRate() {
-        setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 20) * 2);
+        setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / DISCOUNT_PERIOD) * DISCOUNT_RATE_INCREASE);
     }
 
     /**
