@@ -9,29 +9,29 @@ public class ItemTest {
         Item toys = new Item("Toys - RC Car", 10.0, 20.0, 5, 5, 10.0);
         Item clothes = new Item("Clothes - tshirts", 15, 45, 5, 5, 10);
 
-        assertTrue(toys.itemAvailableAndValid(5));
-        assertTrue(clothes.itemAvailableAndValid(1));
+        assertTrue(toys.isAvailableAndValid(5));
+        assertTrue(clothes.isAvailableAndValid(1));
     }
 
     @Test(expected = Exception.class)
     public void testItemNotAvailable() throws Exception{
         Item toys = new Item("Toys - RC Car", 10.0, 20.0, 0, 5, 10.0);
 
-        toys.itemAvailableAndValid(2);
+        toys.isAvailableAndValid(2);
     }
 
     @Test
     public void testValidFood() throws Exception{
         Item food = new Item("Food - potatoes", 10, 15, 9, 9, 0);
 
-        assertTrue(food.itemAvailableAndValid(1));
+        assertTrue(food.isAvailableAndValid(1));
     }
 
     @Test(expected = Exception.class)
     public void testExpiredFood() throws Exception{
         Item food = new Item("Food - potatoes", 10, 15, 9, 10, 0);
 
-        food.itemAvailableAndValid(1);
+        food.isAvailableAndValid(1);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ItemTest {
         Item[] items = new Item[]{clothes, toys, electronics, decor};
 
         for(int i=0; i < items.length; i++){
-            items[i].updateItemDiscountRate();
+            items[i].updateDiscountRate();
         }
 
         assertEquals(35, clothes.discountRate, 0.01);

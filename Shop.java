@@ -19,7 +19,7 @@ public class Shop {
      * @throws Exception: If item is not valid or available
      */
     public void sellItems(Item item, int quantityToSell) throws Exception {
-        if(item.itemAvailableAndValid(quantityToSell)){
+        if(item.isAvailableAndValid(quantityToSell)){
             if(item.daysLastBought >= 30){
                 item.applyDiscount();
             }
