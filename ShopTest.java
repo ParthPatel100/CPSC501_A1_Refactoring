@@ -20,17 +20,17 @@ public class ShopTest {
     @Before
     public void initShop(){
         shop = new Shop();
-        goodClothes = new Item("Clothes - tshirts", 10.0, 20.0, 5, 40, 30.0);
+        goodClothes = new Clothes("Clothes - tshirts", 10.0, 20.0, 5, 40, 30.0);
         goodToys = new Item("Toys - planes", 10.0, 20.0, 5, 40, 30.0);
-        goodElectronics = new Item("Electronics - headphones", 100, 300, 5, 120, 30);
+        goodElectronics = new Electronics("Electronics - headphones", 100, 300, 5, 120, 30);
         goodDecor = new Item("Decor", 10, 50, 5, 40, 20);
-        soldOutClothes = new Item("Clothes - tshirts", 15, 45, 0, 5, 10);
+        soldOutClothes = new Clothes("Clothes - tshirts", 15, 45, 0, 5, 10);
         lowStockToys = new Item("Toy - dolls", 10.0, 20.0, 2, 5, 10.0);
-        expiredFood = new Item("Food - potatoes", 10.0, 20.0, 5, 15, 10.0);
-        goodFood = new Item("Food - potatoes", 10.0, 20.0, 5, 5, 10.0);
-        maxDiscountItem = new Item("Electronics - headphones", 100, 450, 15, 1000, 40.0);
+        expiredFood = new Food("Food - potatoes", 10.0, 20.0, 5, 15, 10.0);
+        goodFood = new Food("Food - potatoes", 10.0, 20.0, 5, 5, 10.0);
+        maxDiscountItem = new Electronics("Electronics - headphones", 100, 450, 15, 1000, 40.0);
 
-        goodClothes2 = new Item("Clothes - tshirts", 10.0, 20.0, 5, 1, 30.0);
+        goodClothes2 = new Clothes("Clothes - tshirts", 10.0, 20.0, 5, 1, 30.0);
         goodToys2 = new Item("Toys - planes", 10.0, 20.0, 5, 1, 30.0);
     }
 

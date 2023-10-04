@@ -3,4 +3,9 @@ public class Clothes extends Item{
         super(name, buyingPrice, sellingPrice, quantity, daysLastBought, discountRate);
     }
 
+    @Override
+    public void updateDiscountRate() {
+        setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 40) * 5);
+    }
+
 }

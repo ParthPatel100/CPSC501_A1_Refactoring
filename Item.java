@@ -30,13 +30,8 @@ public class Item {
             throw new Exception(String.format("Not enough items available to sell, only %s in stock", this.quantity));
         }
 
-        else if(this.getDaysLastBought()>= 10 && this.getName().startsWith("Food")){
-            throw new Exception("Food item cannot be sold as it has expired");
-        }
+        return true;
 
-        else {
-            return true;
-        }
     }
 
     /**
@@ -55,15 +50,7 @@ public class Item {
      * Others - up by 2% every 20 days.
      */
     public void updateDiscountRate() {
-        if (this.getName().startsWith("Clothes")) {
-            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 40) * 5);
-        }
-        else if (this.getName().startsWith("Electronics")) {
-            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 60) * 3);
-        }
-        else {
-            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 20) * 2);
-        }
+        setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 20) * 2);
     }
 
     /**
