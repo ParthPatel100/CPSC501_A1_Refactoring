@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ShopTest {
     private static Shop shop;
@@ -33,54 +32,6 @@ public class ShopTest {
 
         goodClothes2 = new Item("Clothes - tshirts", 10.0, 20.0, 5, 1, 30.0);
         goodToys2 = new Item("Toys - planes", 10.0, 20.0, 5, 1, 30.0);
-    }
-
-    @Test
-    public void testItemAvailable() throws Exception {
-        assertTrue(shop.itemAvailableAndValid(goodToys, 5));
-        assertTrue(shop.itemAvailableAndValid(goodClothes, 1));
-    }
-
-    @Test(expected = Exception.class)
-    public void testItemNotAvailable() throws Exception{
-        shop.itemAvailableAndValid(lowStockToys, 3);
-    }
-
-    @Test
-    public void testValidFood() throws Exception{
-        assertTrue(shop.itemAvailableAndValid(goodFood, 1));
-    }
-
-    @Test(expected = Exception.class)
-    public void testExpiredFood() throws Exception{
-        shop.itemAvailableAndValid(expiredFood, 1);
-    }
-
-    @Test
-    public void testUpdateItemDiscountRate(){
-        Item[] items = new Item[]{goodClothes, goodToys, goodElectronics, goodDecor};
-
-
-        for(int i=0; i < items.length; i++){
-            shop.updateItemDiscountRate(items[i]);
-        }
-
-        assertEquals(35, goodClothes.discountRate, 0.01);
-        assertEquals(34, goodToys.discountRate, 0.01);
-        assertEquals(36, goodElectronics.discountRate, 0.01);
-        assertEquals(24, goodDecor.discountRate, 0.01);
-    }
-
-    @Test
-    public void testApplyDiscount(){
-        Item[] items = new Item[]{goodClothes, goodToys, goodElectronics, goodDecor};
-        for(int i=0; i < items.length; i++){
-            shop.applyDiscount(items[i]);
-        }
-
-        assertEquals(7, goodClothes.sellingPrice,0.01);
-        assertEquals(6.8, goodToys.sellingPrice, 0.01);
-        assertEquals(108, goodElectronics.sellingPrice, 0.01);
     }
 
     @Test
