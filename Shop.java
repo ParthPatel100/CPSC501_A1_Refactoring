@@ -1,5 +1,5 @@
 public class Shop {
-    public double profit;
+    private double profit;
 
     /**
      * Update profit after selling an item
@@ -8,7 +8,11 @@ public class Shop {
      * @param quantityToSell: quantity of items sold
      */
     public void updateProfit(Item item, int quantityToSell){
-        profit += (quantityToSell * item.sellingPrice) - (item.quantity * item.buyingPrice);
+        profit += (quantityToSell * item.getSellingPrice()) - (item.getQuantity() * item.getBuyingPrice());
+    }
+
+    public double getProfit() {
+        return profit;
     }
 
     /**
@@ -20,7 +24,7 @@ public class Shop {
      */
     public void sellItems(Item item, int quantityToSell) throws Exception {
         if(item.isAvailableAndValid(quantityToSell)){
-            if(item.daysLastBought >= 30){
+            if(item.getDaysLastBought() >= 30){
                 item.applyDiscount();
             }
             updateProfit(item, quantityToSell);

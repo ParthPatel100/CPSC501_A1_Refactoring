@@ -39,8 +39,8 @@ public class ShopTest {
         shop.sellItems(goodToys2,3);
         shop.sellItems(goodClothes2, 2);
 
-        assertEquals(2, goodToys2.quantity);
-        assertEquals(0, shop.profit, 0.01);
+        assertEquals(2, goodToys2.getQuantity());
+        assertEquals(0, shop.getProfit(), 0.01);
     }
 
     @Test(expected = Exception.class)
@@ -66,26 +66,26 @@ public class ShopTest {
             shop.sellItems(items[i], 5);
         }
 
-        assertEquals(35, goodClothes.discountRate, 0.01);
-        assertEquals(34, goodToys.discountRate, 0.01);
-        assertEquals(36, goodElectronics.discountRate, 0.01);
-        assertEquals(24, goodDecor.discountRate, 0.01);
+        assertEquals(35, goodClothes.getDiscountRate(), 0.01);
+        assertEquals(34, goodToys.getDiscountRate(), 0.01);
+        assertEquals(36, goodElectronics.getDiscountRate(), 0.01);
+        assertEquals(24, goodDecor.getDiscountRate(), 0.01);
 
-        assertEquals(7, goodClothes.sellingPrice,0.01);
-        assertEquals(6.8, goodToys.sellingPrice, 0.01);
-        assertEquals(108, goodElectronics.sellingPrice, 0.01);
-        assertEquals(12, goodDecor.sellingPrice, 0.01);
+        assertEquals(7, goodClothes.getSellingPrice(),0.01);
+        assertEquals(6.8, goodToys.getSellingPrice(), 0.01);
+        assertEquals(108, goodElectronics.getSellingPrice(), 0.01);
+        assertEquals(12, goodDecor.getSellingPrice(), 0.01);
 
-        assertEquals(19, shop.profit, 0.01);
+        assertEquals(19, shop.getProfit(), 0.01);
     }
 
     @Test
     public void testSellItemsWithMaximumDiscount() throws Exception {
         shop.sellItems(maxDiscountItem, 15);
 
-        assertEquals(40, maxDiscountItem.discountRate, 0.01);
+        assertEquals(40, maxDiscountItem.getDiscountRate(), 0.01);
 
-        assertEquals(1200, shop.profit, 0.01);
+        assertEquals(1200, shop.getProfit(), 0.01);
     }
 
 }

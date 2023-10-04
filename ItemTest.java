@@ -46,10 +46,10 @@ public class ItemTest {
             items[i].updateDiscountRate();
         }
 
-        assertEquals(35, clothes.discountRate, 0.01);
-        assertEquals(34, toys.discountRate, 0.01);
-        assertEquals(36, electronics.discountRate, 0.01);
-        assertEquals(24, decor.discountRate, 0.01);
+        assertEquals(35, clothes.getDiscountRate(), 0.01);
+        assertEquals(34, toys.getDiscountRate(), 0.01);
+        assertEquals(36, electronics.getDiscountRate(), 0.01);
+        assertEquals(24, decor.getDiscountRate(), 0.01);
     }
 
     @Test
@@ -64,9 +64,9 @@ public class ItemTest {
             items[i].applyDiscount();
         }
 
-        assertEquals(7, clothes.sellingPrice,0.01);
-        assertEquals(6.8, toys.sellingPrice, 0.01);
-        assertEquals(108, electronics.sellingPrice, 0.01);
+        assertEquals(7, clothes.getSellingPrice(),0.01);
+        assertEquals(6.8, toys.getSellingPrice(), 0.01);
+        assertEquals(108, electronics.getSellingPrice(), 0.01);
     }
 
     @Test
@@ -74,6 +74,6 @@ public class ItemTest {
         Item toys = new Item("Toys - RC Car", 10.0, 20.0, 10, 5, 10.0);
 
         toys.updateInventory(2);
-        assertEquals(8, toys.quantity);
+        assertEquals(8, toys.getQuantity());
     }
 }

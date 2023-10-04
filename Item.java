@@ -1,10 +1,10 @@
 public class Item {
-    public String name;
-    public double buyingPrice;
-    public int daysLastBought;
-    public double sellingPrice;
-    public int quantity;
-    public double discountRate;
+    private final String name;
+    private final double buyingPrice;
+    private final int daysLastBought;
+    private double sellingPrice;
+    private int quantity;
+    private double discountRate;
 
     public Item(String name, double buyingPrice,double sellingPrice,int quantity, int daysLastBought,double discountRate){
         this.name = name;
@@ -22,15 +22,15 @@ public class Item {
      * @throws Exception: if item is not available to sell or if a food item is expired
      */
     public boolean isAvailableAndValid(int quantityToSell) throws Exception{
-        if(this.quantity == 0){
+        if(this.getQuantity() == 0){
             throw new Exception("Item is currently sold out");
         }
 
-        else if(this.quantity < quantityToSell){
+        else if(this.getQuantity() < quantityToSell){
             throw new Exception(String.format("Not enough items available to sell, only %s in stock", this.quantity));
         }
 
-        else if(this.daysLastBought>= 10 && this.name.startsWith("Food")){
+        else if(this.getDaysLastBought()>= 10 && this.getName().startsWith("Food")){
             throw new Exception("Food item cannot be sold as it has expired");
         }
 
@@ -44,7 +44,7 @@ public class Item {
      */
     public void applyDiscount(){
         updateDiscountRate();
-        this.sellingPrice = (this.sellingPrice * discountRate/100);
+        setSellingPrice(getSellingPrice() * getDiscountRate()/100);
     }
 
     /**
@@ -55,18 +55,14 @@ public class Item {
      * Others - up by 2% every 20 days.
      */
     public void updateDiscountRate() {
-        if (this.name.startsWith("Clothes")) {
-            this.discountRate = (discountRate + (this.daysLastBought / 40) * 5);
+        if (this.getName().startsWith("Clothes")) {
+            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 40) * 5);
         }
-        else if (this.name.startsWith("Electronics")) {
-            this.discountRate = (discountRate + (this.daysLastBought / 60) * 3);
+        else if (this.getName().startsWith("Electronics")) {
+            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 60) * 3);
         }
         else {
-            this.discountRate = (discountRate + (this.daysLastBought / 20) * 2);
-        }
-
-        if(discountRate >= 40){
-            discountRate = 40;
+            setDiscountRate(getDiscountRate() + (this.getDaysLastBought() / 20) * 2);
         }
     }
 
@@ -75,7 +71,42 @@ public class Item {
      * @param quantityToSell: quantity of items sold
      */
     public void updateInventory(int quantityToSell){
-        this.quantity = this.quantity - quantityToSell;
+        setQuantity(getQuantity() - quantityToSell);
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public double getBuyingPrice(){
+        return this.buyingPrice;
+    }
+
+    public int getDaysLastBought(){
+        return this.daysLastBought;
+    }
+
+    public double getSellingPrice() {
+        return this.sellingPrice;
+    }
+
+    public void setSellingPrice(double sellingPrice){
+        this.sellingPrice = sellingPrice;
+    }
+
+    public int getQuantity(){
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
+    public double getDiscountRate(){
+        return this.discountRate;
+    }
+
+    public void setDiscountRate(double discountRate){
+        this.discountRate = Math.min(discountRate, 40);
+    }
 }
